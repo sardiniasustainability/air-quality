@@ -9,7 +9,7 @@ def _exec_notebook(path):
         args = ["jupyter", "nbconvert", "--to", "notebook", "--execute",
                 "--ExecutePreprocessor.timeout=1000",
                 "--output", fout.name, path]
-        subprocess.check_call(args)
+        subprocess.run(args, check=True)
 
 
 def test():
