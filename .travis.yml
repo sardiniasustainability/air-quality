@@ -1,6 +1,8 @@
 language: python
 python:
   - "3.8"
+env:
+  - CONDA_ENV_NAME=data-science
 install:
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
@@ -18,8 +20,9 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda env create -n data-science python=$TRAVIS_PYTHON_VERSION -f environment.yml
-  - source activate data-science
+  - conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f environment.yml
+  - source activate $CONDA_ENV_NAME
+  - ipython kernel install --user --name=$CONDA_ENV_NAME 
 
 script:
   - jupyter kernelspec list
