@@ -18,8 +18,8 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - conda env create -n test-environment python=$TRAVIS_PYTHON_VERSION -f environment.yml
-  - source activate test-environment
+  - conda env create -n data-science python=$TRAVIS_PYTHON_VERSION -f environment.yml
+  - source activate data-science
 
 script:
   - jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1000 air_quality.ipynb
