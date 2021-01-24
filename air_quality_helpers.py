@@ -82,7 +82,7 @@ def print_metadata(dataframe, message):
         k = k+1
 
 
-def pollutants_in_data(pollution_data):
+def pollutants_in_yearly_data(pollution_data):
     """ List the pollutants whose data is available
     """
     return pollution_data.Inquinante.unique()
@@ -92,9 +92,75 @@ def print_pollutants(pollution_data):
     """ Print a list of the pollutants in the given data
     """
     print("Data available for the following pollutants:")
-    available_pollutants = pollutants_in_data(pollution_data)
+    available_pollutants = pollutants_in_yearly_data(pollution_data)
     k = 0
     for poll in available_pollutants:
         num_pollutant = _padded_number_to_str(k)
         print("   " + num_pollutant + ": " + poll)
         k = k+1
+
+
+def _reindex_daily(data_series):
+    """ Re-index a data series and fill missing measurements with nans
+    """
+    import pandas as pd
+    import numpy as np
+
+    idx = pd.date_range('01-01-2020', '12-31-2020')
+    data_series = data_series.reindex(idx, fill_value=np.nan)
+    return data_series
+
+
+def _reformat_monthly_data_by_day(montly_data, month_number):
+    """ Reformat the data about a month into a time series by day
+    """
+    import math
+    import pandas as pd
+    import datetime
+
+    measurements = pd.to_numeric(montly_data.array, errors='coerce')
+    day_of_month = pd.to_numeric(montly_data.index)
+
+    new_measurements = []
+    new_dates = []
+    for meas, day in zip(measurements, day_of_month):
+        # Remove the invalid or empty measurements
+        if not math.isnan(meas):
+            new_measurements.append(meas)
+            new_dates.append(datetime.date(2020, month_number, day+1))
+
+    return pd.Series(new_measurements, index=new_dates)
+
+
+def convert_to_timeseries(daily_pollution_data):
+    """ Convert the weird format used by the Sardegna Ambiente dataset
+    """
+    import datetime
+    import pandas as pd
+
+    # Exclude the "day of the month" column
+    pollution_data = daily_pollution_data.iloc[:, 1:]
+
+    data_series = pd.Series(dtype='float64')
+
+    # Iterate through the months
+    month = 1
+    for curr_column in pollution_data.columns:
+        curr_data = pollution_data[curr_column]
+        month_series = _reformat_monthly_data_by_day(curr_data, month)
+        month = month+1
+
+        data_series = data_series.append(month_series)
+
+    data_series = _reindex_daily(data_series)
+    return data_series
+
+
+def plot_daily_pollution(data_to_plot, title=''):
+    """ Plot the data about daily pollution
+    """
+    import matplotlib.pyplot as plt
+
+    _, ax = plt.subplots(figsize=(10, 7))
+    plt.title(title)
+    data_to_plot.plot(ax=ax)
