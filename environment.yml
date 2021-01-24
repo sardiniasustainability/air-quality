@@ -1,8 +1,6 @@
 name: data-science
 channels:
-  - anaconda
   - conda-forge
-  - defaults
 dependencies:
   - python=3.8
   - matplotlib=3.3.1=0
