@@ -22,4 +22,5 @@ install:
   - source activate data-science
 
 script:
+  - jupyter kernelspec list
   - jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1000 air_quality.ipynb
