@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/sardiniasustainability/air-quality.svg?branch=main)](https://travis-ci.org/sardiniasustainability/air-quality)
+
 # [EN] An analysis of official data about air quality in Sardinia
 
 Click on air_quality.ipynb for the analysis.
