@@ -2,27 +2,29 @@ language: python
 python:
   - "3.8"
 env:
-  - CONDA_ENV_NAME=data-science CONDA_ENV_FILE="./python/environment.yml" PYTHON_NOTEBOOK_FILE="./python/air_quality.ipynb"
+  - CONDA_ENV_NAME=data-science 
+    CONDA_ENV_FILE="./python/environment.yml" 
+    PYTHON_NOTEBOOK_FILE="./python/air_quality.ipynb"
 install:
   - sudo apt-get update
-  # We do this conditionally because it saves us some downloading if the
-  # version is the same.
-  - if [[ "$TRAVIS_PYTHON_VERSION" == "2.7" ]]; then
-      wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh;
-    else
-      wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-    fi
+  # (mini)Conda installation.
+  - wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
   - bash miniconda.sh -b -p $HOME/miniconda
   - export PATH="$HOME/miniconda/bin:$PATH"
   - hash -r
+  # Conda configuration and update
   - conda config --set always_yes yes --set changeps1 no
   - conda update -q conda
-  # Useful for debugging any issues with conda
   - conda info -a
+  # Create conda environment
   - conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f $CONDA_ENV_FILE
   - source activate $CONDA_ENV_NAME
   - ipython kernel install --user --name=$CONDA_ENV_NAME 
 
 script:
   - jupyter kernelspec list
-  - jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1000 $PYTHON_NOTEBOOK_FILE
+  # Run the Jupyter notebook
+  - jupyter nbconvert --to notebook 
+    --execute 
+    --ExecutePreprocessor.timeout=1000 
+    $PYTHON_NOTEBOOK_FILE
