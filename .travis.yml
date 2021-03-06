@@ -3,6 +3,8 @@ python:
   - "3.8"
 env:
   - CONDA_ENV_NAME=data-science
+  - CONDA_ENV_FILE=./python/environment.yml
+  - PYTHON_NOTEBOOK_FILE=./python/air_quality.ipynb
 install:
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
@@ -19,11 +21,10 @@ install:
   - conda update -q conda
   # Useful for debugging any issues with conda
   - conda info -a
-
-  - conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f environment.yml
+  - conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f $CONDA_ENV_FILE
   - source activate $CONDA_ENV_NAME
   - ipython kernel install --user --name=$CONDA_ENV_NAME 
 
 script:
   - jupyter kernelspec list
-  - jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1000 air_quality.ipynb
+  - jupyter nbconvert --to notebook --execute --ExecutePreprocessor.timeout=1000 $PYTHON_NOTEBOOK_FILE
