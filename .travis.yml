@@ -2,9 +2,7 @@ language: python
 python:
   - "3.8"
 env:
-  - CONDA_ENV_NAME=data-science
-  - CONDA_ENV_FILE="./python/environment.yml"
-  - PYTHON_NOTEBOOK_FILE="./python/air_quality.ipynb"
+  - CONDA_ENV_NAME=data-science CONDA_ENV_FILE="./python/environment.yml" PYTHON_NOTEBOOK_FILE="./python/air_quality.ipynb"
 install:
   - sudo apt-get update
   # We do this conditionally because it saves us some downloading if the
