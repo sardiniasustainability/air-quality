@@ -1,13 +1,5 @@
 # air_quality_helpers.py    Helpers for the notebook
 
-def _select_pollutant(pollution_data, pollutant_name):
-    """ Select the rows in the dataframe that refer to the given pollutant
-    """
-    data_by_pollutant = pollution_data.loc[
-        pollution_data['Inquinante'] == pollutant_name]
-    return data_by_pollutant
-
-
 def _associate_geographic_data(pollution_data):
     """ Add geographic data to yearly pollution data for plotting
     """
