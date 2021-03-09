@@ -6,9 +6,9 @@ jobs:
     docker:
       - image: circleci/python:3.8.5
     environment:
-      - CONDA_ENV_NAME: data-science
-      - CONDA_ENV_FILE: "./python/environment.yml"
-      - OUTPUT_FIGURES_FOLDER: "/tmp/figures"
+      CONDA_ENV_NAME: data-science
+      CONDA_ENV_FILE: "./python/environment.yml"
+      OUTPUT_FIGURES_FOLDER: "/tmp/figures"
     steps:
       - checkout
       - run:
