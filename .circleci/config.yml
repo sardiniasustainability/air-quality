@@ -12,18 +12,29 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install conda, run script
+          name: Update system, fetch LFS files
           command: |
             sudo apt-get update
+            git lfs install
+            git lfs fetch
+      - run:
+          name: Install conda
+          command: |
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
             bash miniconda.sh -b -p $HOME/miniconda
-            export PATH="$HOME/miniconda/bin:$PATH"
-            hash -r
+            ln -sf $HOME/miniconda/bin/* /usr/bin/
+            echo "conda init bash" >> $HOME/.bashrc
+      - run:
+          name: "Configure and update conda"
+          command: |
             conda config --set always_yes yes --set changeps1 no
             conda update -q conda
             conda info -a
+      - run:
+          name: Run script
+          command: |
             conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f $CONDA_ENV_FILE
-            source activate $CONDA_ENV_NAME
+            conda activate $CONDA_ENV_NAME
             python ./python/yearly_data_analysis.py
             mkdir $OUTPUT_FIGURES_FOLDER
             cp ./figures/* $OUTPUT_FIGURES_FOLDER/
