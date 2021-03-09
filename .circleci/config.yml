@@ -8,7 +8,7 @@ jobs:
     environment:
       CONDA_ENV_NAME: data-science
       CONDA_ENV_FILE: "./python/environment.yml"
-      OUTPUT_FIGURES_FOLDER: "/tmp/figures"
+      OUTPUT_FOLDER: "/tmp/figures"
     steps:
       - run:
           name: Update system
@@ -38,10 +38,10 @@ jobs:
           command: |
             source activate $CONDA_ENV_NAME
             python ./python/yearly_data_analysis.py
-            mkdir $OUTPUT_FIGURES_FOLDER
-            cp ./figures/* $OUTPUT_FIGURES_FOLDER/
+            mkdir ${OUTPUT_FOLDER}
+            cp ./figures/* ${OUTPUT_FOLDER}/
       - store_artifacts:
-          path: $OUTPUT_FIGURES_FOLDER
+          path: ${OUTPUT_FOLDER}
 
 workflows:
   version: 2.1
