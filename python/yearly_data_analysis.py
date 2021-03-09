@@ -3,6 +3,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
+import os
 
 
 def _select_data(pollution_data, pollutant_name, province_name):
@@ -73,7 +74,10 @@ def _plot_data(pollutant, province, file_name):
     plt.tight_layout()
 
     # Save figures
-    plt.savefig("./figures/" + file_name, dpi=150)
+    figures_folder = "./figures/"
+    if not os.path.exists(figures_folder):
+        os.makedirs(figures_folder)
+    plt.savefig(figures_folder + file_name, dpi=150)
 
 
 _plot_data("PM2,5 ( Mg ) ", "CAGLIARI", "pm25.png")
