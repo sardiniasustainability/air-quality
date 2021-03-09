@@ -23,7 +23,7 @@ jobs:
             conda update -q conda
             conda info -a
             conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f $CONDA_ENV_FILE
-            source activate $CONDA_ENV_NAME
+            conda activate $CONDA_ENV_NAME
             python ./python/yearly_data_analysis.py
             mkdir $OUTPUT_FIGURES_FOLDER
             cp ./figures/* $OUTPUT_FIGURES_FOLDER/
