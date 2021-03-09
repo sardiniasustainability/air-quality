@@ -1,3 +1,5 @@
 air_quality.nbconvert.ipynb
 __pycache__
 .ipynb_checkpoints/
+figures
+.vscode

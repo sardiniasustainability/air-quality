@@ -73,60 +73,8 @@ def _plot_data(pollutant, province, file_name):
     plt.tight_layout()
 
     # Save figures
-    plt.savefig("./figures/" + file_name, dpi=300)
+    plt.savefig("./figures/" + file_name, dpi=150)
 
 
 _plot_data("PM2,5 ( Mg ) ", "CAGLIARI", "pm25.png")
 _plot_data("PM10 ( Mg ) ", "CAGLIARI", "pm10.png")
-
-
-# [markdown]
-# ## Hourly emissions
-#
-# The hourly emissions are obtained by direct reading at measurement stations. The following is a complete list of all the available measurement stations.
-#
-# | Code          | Province                        | Comune              |
-# |---------------|---------------------------------|---------------------|
-# | cenas6        | Città Metropolitana di Cagliari | Assemini            |
-# | cenas8        | Città Metropolitana di Cagliari | Assemini            |
-# | cenas9        | Città Metropolitana di Cagliari | Assemini            |
-# | cenca1        | Città Metropolitana di Cagliari | Cagliari            |
-# | cenmo1        | Città Metropolitana di Cagliari | Monserrato          |
-# | cenqu1        | Città Metropolitana di Cagliari | Quartu Sant'Elena   |
-# | censa2        | Città Metropolitana di Cagliari | Sarroch             |
-# | censa3        | Città Metropolitana di Cagliari | Sarroch             |
-# | cenma1        | Nuoro                           | Macomer             |
-# | cennu1        | Nuoro                           | Nuoro               |
-# | cennu2        | Nuoro                           | Nuoro               |
-# | cenot3        | Nuoro                           | Ottana              |
-# | censn1        | Nuoro                           | Siniscola           |
-# | cenor1        | Oristano                        | Oristano            |
-# | cenor2        | Oristano                        | Oristano            |
-# | cesgi1        | Oristano                        | Santa Giusta        |
-# | cealg1        | Sassari                         | Alghero             |
-# | cenpt1        | Sassari                         | Porto Torres        |
-# | cens10        | Sassari                         | Olbia               |
-# | cens12        | Sassari                         | Sassari             |
-# | cens16        | Sassari                         | Sassari             |
-# | censs2        | Sassari                         | Sassari             |
-# | censs3        | Sassari                         | Porto Torres        |
-# | censs4        | Sassari                         | Porto Torres        |
-# | ceolb1        | Sassari                         | Olbia               |
-# | cencb2        | Sud Sardegna                    | Carbonia            |
-# | cenig1        | Sud Sardegna                    | Iglesias            |
-# | cennf1        | Sud Sardegna                    | Gonnesa             |
-# | cennm1        | Sud Sardegna                    | Nuraminis           |
-# | cenps4        | Sud Sardegna                    | Portoscuso          |
-# | cenps6        | Sud Sardegna                    | Portoscuso          |
-# | cenps7        | Sud Sardegna                    | Portoscuso          |
-# | cense0        | Sud Sardegna                    | Seulo               |
-# | censg3        | Sud Sardegna                    | San Gavino Monreale |
-
-# Let's focus on the Sarroch station _censa2_, in particular the CO emissions:
-
-
-# daily_pollution_data = pd.read_csv(
-#     "../data/hourly_emissions_sarroch/censa2-sarroch-co-2020.csv", comment="#")
-# data_to_plot = h.convert_to_timeseries(daily_pollution_data)
-# h.plot_daily_pollution(data_to_plot, "CO emissions in Sarroch (CA) [mg/m^3]")
-#

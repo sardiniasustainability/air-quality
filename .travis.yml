@@ -19,12 +19,6 @@ install:
   # Create conda environment
   - conda env create -n $CONDA_ENV_NAME python=$TRAVIS_PYTHON_VERSION -f $CONDA_ENV_FILE
   - source activate $CONDA_ENV_NAME
-  - ipython kernel install --user --name=$CONDA_ENV_NAME 
 
 script:
-  - jupyter kernelspec list
-  # Run the Jupyter notebook
-  - jupyter nbconvert --to notebook 
-    --execute 
-    --ExecutePreprocessor.timeout=1000 
-    $PYTHON_NOTEBOOK_FILE
+  - python ./python/yearly_data_analysis.py
