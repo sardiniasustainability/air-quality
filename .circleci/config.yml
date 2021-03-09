@@ -4,7 +4,7 @@ orbs:
 jobs:
   build_python:
     machine:
-      image: circleci/python:latest
+      image: circleci/python:3.8.5
     environment:
       - CONDA_ENV_NAME: data-science
       - CONDA_ENV_FILE: "./python/environment.yml"
