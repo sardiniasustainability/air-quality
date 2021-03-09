@@ -22,8 +22,8 @@ jobs:
           name: Install conda
           command: |
             wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
-            bash miniconda.sh -b -p $HOME/miniconda
-            ln -sf $HOME/miniconda/bin/* /usr/bin/
+            chmod +x miniconda.sh
+            sudo ./miniconda.sh -b
             echo "conda init bash" >> $HOME/.bashrc
       - run:
           name: "Configure and update conda"
