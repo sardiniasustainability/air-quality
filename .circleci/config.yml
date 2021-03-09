@@ -15,7 +15,8 @@ jobs:
           name: Update system, fetch LFS files
           command: |
             sudo apt-get update
-            git lfs install
+            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+            sudo apt-get install git-lfs
             git lfs fetch
       - run:
           name: Install conda
