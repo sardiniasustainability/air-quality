@@ -30,7 +30,9 @@ def _select_data(pollution_data, pollutant_name, province_name):
 def _read_data(file_name, pollutant_name, province_name):
     """ Read the data from the file and select the desired rows
     """
+    print("CI-DEBUG: Reading " + file_name)
     pollutant_data = pd.read_csv(file_name)
+    print(pollutant_data.head())
     pollutant_data = _select_data(
         pollutant_data, pollutant_name, province_name)
     return pollutant_data
