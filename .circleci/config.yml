@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  matlab: mathworks/matlab@0.1
+  matlab: mathworks/matlab@0.4.0
 jobs:
   build_python:
     machine:
