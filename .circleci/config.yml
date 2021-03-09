@@ -10,15 +10,14 @@ jobs:
       CONDA_ENV_FILE: "./python/environment.yml"
       OUTPUT_FIGURES_FOLDER: "/tmp/figures"
     steps:
-      - checkout
       - run:
-          name: Update system, fetch LFS files
+          name: Update system
           command: |
             sudo apt-get update
             curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
             sudo apt-get install git-lfs
             git lfs install
-            git lfs fetch --all
+      - checkout
       - run:
           name: Install conda
           command: |
