@@ -3,8 +3,8 @@ orbs:
   matlab: mathworks/matlab@0.4.0
 jobs:
   build_python:
-    machine:
-      image: circleci/python:3.8.5
+    docker:
+      - image: circleci/python:3.8.5
     environment:
       - CONDA_ENV_NAME: data-science
       - CONDA_ENV_FILE: "./python/environment.yml"
