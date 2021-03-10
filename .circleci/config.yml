@@ -43,8 +43,6 @@ jobs:
           path: /tmp/figures
 
   compile_pdf:
-    requires:
-      - build_python
     docker:
       - image: apicciau/texlive_ubuntu
     steps:
@@ -62,4 +60,6 @@ workflows:
   run_all_tests:
     jobs:
       - build_python
-      - compile_pdf
+      - compile_pdf:
+          requires:
+            - build_python
