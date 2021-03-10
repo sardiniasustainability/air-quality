@@ -52,6 +52,7 @@ jobs:
           name: "Compile Sardinian PDF"
           command: |
             mkdir /tmp/pdf_sardinian
+            pwd && ls
             latexmk -output-directory=/tmp/pdf_sardinian -pdf notes_srd.tex
       - store_artifacts:
           path: /tmp/pdf_sardinian/notes_srd.pdf
