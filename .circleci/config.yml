@@ -49,6 +49,8 @@ jobs:
     docker:
       - image: apicciau/texlive_ubuntu
     steps:
+      - attach_workspace:
+          at: ~/
       - run:
           name: "Compile Sardinian PDF"
           command: |
