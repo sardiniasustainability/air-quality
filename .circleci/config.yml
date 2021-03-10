@@ -42,8 +42,23 @@ jobs:
       - store_artifacts:
           path: /tmp/figures
 
+  compile_pdf:
+    requires:
+      - build_python
+    docker:
+      - image: apicciau/texlive_ubuntu
+    steps:
+      - run:
+          name: "Compile Sardinian PDF"
+          command: |
+            mkdir /tmp/pdf_sardinian
+            latexmk -output-directory=/tmp/pdf_sardinian -pdf notes_srd.tex
+      - store_artifacts:
+          path: /tmp/pdf_sardinian/notes_srd.pdf
+
 workflows:
   version: 2.1
   run_all_tests:
     jobs:
       - build_python
+      - compile_pdf

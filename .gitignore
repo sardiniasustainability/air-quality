@@ -1,5 +1,12 @@
 air_quality.nbconvert.ipynb
 __pycache__
 .ipynb_checkpoints/
-figures
+figures/
+latex/
 .vscode
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.pdf
+*.synctex.gz
