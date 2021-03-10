@@ -39,6 +39,9 @@ jobs:
             python ./python/yearly_data_analysis.py
             mkdir /tmp/figures
             cp ./figures/* /tmp/figures/
+      - persist_to_workspace:
+          root: ~/
+          paths: project/
       - store_artifacts:
           path: /tmp/figures
 
