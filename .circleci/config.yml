@@ -1,0 +1,70 @@
+version: 2.1
+orbs:
+  matlab: mathworks/matlab@0.4.0
+jobs:
+  build_python:
+    docker:
+      - image: circleci/python:3.8.5
+    environment:
+      CONDA_ENV_NAME: data-science
+      CONDA_ENV_FILE: "./python/environment.yml"
+    steps:
+      - run:
+          name: Update system
+          command: |
+            sudo apt-get update
+            curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+            sudo apt-get install git-lfs
+            git lfs install
+      - checkout
+      - run:
+          name: Install conda
+          command: |
+            wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
+            chmod +x miniconda.sh
+            CONDA_PATH=$HOME/miniconda
+            ./miniconda.sh -b -p $CONDA_PATH
+            echo "export PATH=$CONDA_PATH/bin:$PATH" >> $BASH_ENV
+      - run:
+          name: "Configure conda environment"
+          command: |
+            conda config --set always_yes yes --set changeps1 no
+            conda update -q conda
+            conda info -a            
+            conda env create -n $CONDA_ENV_NAME -f $CONDA_ENV_FILE
+      - run:
+          name: Run script
+          command: |
+            source activate $CONDA_ENV_NAME
+            python ./python/yearly_data_analysis.py
+            mkdir /tmp/figures
+            cp ./figures/* /tmp/figures/
+      - persist_to_workspace:
+          root: ~/
+          paths: project/
+      - store_artifacts:
+          path: /tmp/figures
+
+  compile_pdf:
+    docker:
+      - image: apicciau/texlive_ubuntu
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: "Compile Sardinian PDF"
+          command: |
+            mkdir /tmp/pdf_sardinian
+            pwd && ls
+            latexmk -output-directory=/tmp/pdf_sardinian -pdf notes_srd.tex
+      - store_artifacts:
+          path: /tmp/pdf_sardinian/notes_srd.pdf
+
+workflows:
+  version: 2.1
+  run_all_tests:
+    jobs:
+      - build_python
+      - compile_pdf:
+          requires:
+            - build_python

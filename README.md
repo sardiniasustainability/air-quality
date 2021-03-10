@@ -1,9 +1,3 @@
-[![Build Status](https://travis-ci.org/sardiniasustainability/air-quality.svg?branch=main)](https://travis-ci.org/sardiniasustainability/air-quality)
+# Analysis of data about particulate emissions in Sardinia
 
-# [EN] An analysis of official data about air quality in Sardinia
-
-Click on air_quality.ipynb for the analysis.
-
-# [SRD] Un' anàlisi de is datus uficialis de sa calidadi de s' àiri in Sardìnnia
-
-Clica apitzus de air_quality.ipynb po biri s' anàlisi.
+[![sardiniasustainability](https://circleci.com/gh/sardiniasustainability/air-quality.svg?style=svg)](https://app.circleci.com/pipelines/github/sardiniasustainability/air-quality)[![Latest version (PDF)](https://img.shields.io/badge/download-latest-blue)](https://circleci.com/api/v1.1/project/github/sardiniasustainability/air-quality/latest/artifacts/0/tmp/pdf_sardinian/notes_srd.pdf)
