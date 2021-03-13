@@ -4,15 +4,22 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from pathlib import Path
 import os
+from functools import reduce
 
 
-def _select_data(pollution_data, pollutant_name, province_name):
+def _select_data(pollution_data, pollutant_name, comuni_names):
     """ Select the rows in the dataframe that refer to the given pollutant
         and province
     """
+    # Clean the "Comune" column
+    for comune in comuni_names:
+        comune.title()
+    pollution_data.set_index('Comune')
+    pollution_data.Comune = pollution_data.Comune.str.title()
+
     data_by_pollutant = pollution_data.loc[
         (pollution_data['Inquinante'] == pollutant_name) &
-        (pollution_data['Provincia'] == province_name)].copy()
+        (pollution_data['Comune'].isin(comuni_names))].copy()
     # Delete now-implicit data
     data_by_pollutant.pop('Inquinante')
     data_by_pollutant.pop('Provincia')
@@ -21,38 +28,34 @@ def _select_data(pollution_data, pollutant_name, province_name):
     data_by_pollutant.rename(
         columns={'Valore': category[0]}, inplace=True)
     data_by_pollutant.pop('Macrosettore')
-    # Clean the "Comune" column
-    data_by_pollutant.set_index('Comune')
-    data_by_pollutant.Comune = data_by_pollutant.Comune.str.title()
     return data_by_pollutant
 
 
-def _read_data(file_name, pollutant_name, province_name):
+def _read_data(file_name, pollutant_name, comuni_names):
     """ Read the data from the file and select the desired rows
     """
     print("CI-DEBUG: Reading " + str(file_name))
     pollutant_data = pd.read_csv(file_name)
     print(pollutant_data.head())
     pollutant_data = _select_data(
-        pollutant_data, pollutant_name, province_name)
+        pollutant_data, pollutant_name, comuni_names)
     return pollutant_data
 
 
 def _join_multiple(dataframes):
     """ Join multiple tables into one
     """
-    from functools import reduce
     joined_tables = reduce(
         lambda left, right: pd.merge(left, right), dataframes)
     return joined_tables
 
 
-def _plot_data(pollutant, province, file_name):
-    """ Read and plot the data for the given pollutant and the given province
+def _plot_data(pollutant, comuni_names, file_name):
+    """ Read and plot the data for the given pollutant and the given comunis
     """
     # Read data from the files
     base_path = "./data/yearly_emissions"
-    all_data = [_read_data(file_name, pollutant, province)
+    all_data = [_read_data(file_name, pollutant, comuni_names)
                 for file_name in Path(base_path).glob('*.csv')]
     total_data = _join_multiple(all_data)
 
@@ -67,7 +70,7 @@ def _plot_data(pollutant, province, file_name):
 
     # Resize images
     fig = plt.gcf()
-    image_height = 12
+    image_height = 7
     image_width = 9
     image_left_margin = 1.5/image_width
     image_right_margin = 3/image_width
@@ -82,5 +85,14 @@ def _plot_data(pollutant, province, file_name):
     plt.savefig(figures_folder + file_name, dpi=150)
 
 
-_plot_data("PM2,5 ( Mg ) ", "CAGLIARI", "pm25.png")
-_plot_data("PM10 ( Mg ) ", "CAGLIARI", "pm10.png")
+def _read_comuni():
+    """ Read the Comuni of interest for the plots
+    """
+    with open('./data/comuni/focus_comuni_provincia_cagliari.txt') as f:
+        lines = f.read().splitlines()
+    return lines
+
+
+comuni = _read_comuni()
+_plot_data("PM2,5 ( Mg ) ", comuni, "pm25.png")
+_plot_data("PM10 ( Mg ) ", comuni, "pm10.png")
