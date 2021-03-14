@@ -37,6 +37,7 @@ jobs:
           command: |
             source activate $CONDA_ENV_NAME
             python ./python/yearly_data_analysis.py
+            python ./python/daily_data_analysis.py            
             mkdir /tmp/figures
             cp ./figures/* /tmp/figures/
       - persist_to_workspace:
