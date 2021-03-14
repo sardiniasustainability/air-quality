@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 import os
 from functools import reduce
+import shared
 
 
 def _select_data(pollution_data, pollutant_name, comuni_names):
@@ -79,10 +80,7 @@ def _plot_data(pollutant, comuni_names, file_name):
     plt.tight_layout()
 
     # Save figures
-    figures_folder = "./figures/"
-    if not os.path.exists(figures_folder):
-        os.makedirs(figures_folder)
-    plt.savefig(figures_folder + file_name, dpi=150)
+    shared.save_figure(file_name)
 
 
 def _read_comuni():
