@@ -1,6 +1,7 @@
 # Analysis of data about particulate emissions in Sardinia
 
 [![sardiniasustainability](https://circleci.com/gh/sardiniasustainability/air-quality.svg?style=svg)](https://app.circleci.com/pipelines/github/sardiniasustainability/air-quality)
+* All figures [![Latest version (Sardinian PDF)](https://img.shields.io/badge/download-latest-blue)](https://circleci.com/api/v1.1/project/github/sardiniasustainability/air-quality/latest/artifacts/0/tmp/figures/figures.tar.gz)
 * PDF (Sardinian) [![Latest version (Sardinian PDF)](https://img.shields.io/badge/download-latest-blue)](https://circleci.com/api/v1.1/project/github/sardiniasustainability/air-quality/latest/artifacts/0/tmp/pdf_sardinian/notes_srd.pdf)
 * PDF (English) [![Latest version (English PDF)](https://img.shields.io/badge/download-latest-blue)](https://circleci.com/api/v1.1/project/github/sardiniasustainability/air-quality/latest/artifacts/0/tmp/pdf_english/notes_eng.pdf)
 
