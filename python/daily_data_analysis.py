@@ -80,7 +80,7 @@ def _plot_daily_pollution(data_file_name, output_file_name, year, thresholds, ti
     """
     # Read data
     daily_pollution_data = pd.read_csv(
-        "./data/daily_emissions/" + data_file_name, comment="#")
+        "../data/daily_emissions/" + data_file_name, comment="#")
     daily_pollution_data = _convert_to_timeseries(daily_pollution_data, year)
 
     # Line plot

@@ -41,7 +41,7 @@ jobs:
             python daily_data_analysis.py
             cd ..        
             mkdir /tmp/figures
-            cp ./figures/* /tmp/figures/
+            tar cvfz /tmp/figures/figures.tar.gz figures
       - persist_to_workspace:
           root: ~/
           paths: project/
