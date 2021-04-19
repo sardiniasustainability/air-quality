@@ -36,9 +36,12 @@ jobs:
           name: Run script
           command: |
             source activate $CONDA_ENV_NAME
-            python ./python/yearly_data_analysis.py
+            cd ./python
+            python yearly_data_analysis.py
+            python daily_data_analysis.py
+            cd ..        
             mkdir /tmp/figures
-            cp ./figures/* /tmp/figures/
+            tar cvfz /tmp/figures/figures.tar.gz figures
       - persist_to_workspace:
           root: ~/
           paths: project/
@@ -59,6 +62,14 @@ jobs:
             latexmk -output-directory=/tmp/pdf_sardinian -pdf notes_srd.tex
       - store_artifacts:
           path: /tmp/pdf_sardinian/notes_srd.pdf
+      - run:
+          name: "Compile English PDF"
+          command: |
+            mkdir /tmp/pdf_english
+            pwd && ls
+            latexmk -output-directory=/tmp/pdf_english -pdf notes_eng.tex
+      - store_artifacts:
+          path: /tmp/pdf_english/notes_eng.pdf
 
 workflows:
   version: 2.1

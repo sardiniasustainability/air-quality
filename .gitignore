@@ -10,3 +10,7 @@ latex/
 *.log
 *.pdf
 *.synctex.gz
+*.bib.*
+*.bcf
+*.run.xml
+ltx/
