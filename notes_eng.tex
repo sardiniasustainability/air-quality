@@ -1,0 +1,59 @@
+\documentclass[a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{microtype}
+\usepackage{quoting}
+\usepackage{siunitx}
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+\addbibresource{notes_bibliography.bib}
+
+\begin{document}
+\title{Analysis of data about particulate emissions in Sardinia}
+\maketitle
+
+In 2020, a report by the Environment Protection Agency (ARPA) showed a number of problems related to the quality of air in Sardinia~\cite{ARPASardegna2021}. In this work, we'll see the data about \emph{particulates}, which are very small particles that can be breathed and that can accumulate in the lungs, causing many health problems\cite{Davidson2005}. In the Metropolitan City of Cagliari, the measurements of these particulates are higher than the threshold chosen by the World Health Organisation (WHO), even though they are not above the threshold chosen by Italy. Table~\ref{tab:particulate-limits} show the differences between the thresholds.
+\begin{table}[tbp]
+    \centering
+    \caption{Particulate emission thresholds according to the WHO and the italian law. \label{tab:particulate-limits}}
+    \begin{tabular}{clcc}
+        \toprule
+        \multicolumn{2}{c}{Thresholds} & PM 2,5                  & PM 10                                                   \\
+        \midrule
+        \multirow{2}*{WHO}             & Yearly average          & $\SI{10}{\micro\gram/m^3}$ & $\SI{20}{\micro\gram/m^3}$ \\
+                                       & Daily average           & $\SI{25}{\micro\gram/m^3}$ & $\SI{50}{ug/m^3}$          \\
+        \cmidrule(lr){1-4}
+        \multirow{3}*{Italy}           & Yearly average          & $\SI{25}{\micro\gram/m^3}$ & $\SI{40}{\micro\gram/m^3}$ \\
+                                       & Daily average           &                            & $\SI{50}{\micro\gram/m^3}$ \\
+                                       & Daily average crossings &                            & $35$                       \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\section{Daily measurements}
+
+
+
+
+\section{Figures from 2010}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/pm25.png}
+    \caption{PM 2.5 emissions in the Metropolitan City of Cagliari.}
+    \label{fig:pm25-prov-casteddu}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\columnwidth]{./figures/pm10.png}
+    \caption{PM 10 emissions in the Metropolitan City of Cagliari.}
+    \label{fig:pm10-prov-casteddu}
+\end{figure}
+
+\printbibliography
+
+\end{document}
