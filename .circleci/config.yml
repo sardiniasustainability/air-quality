@@ -46,7 +46,7 @@ jobs:
           root: ~/
           paths: project/
       - store_artifacts:
-          path: /tmp/figures
+          path: /tmp/figures/figures.tar.gz
 
   compile_pdf:
     docker:
