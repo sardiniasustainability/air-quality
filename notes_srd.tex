@@ -7,6 +7,7 @@
 \usepackage{multirow}
 \usepackage{microtype}
 \usepackage{quoting}
+\usepackage{subfig}
 \usepackage{siunitx}
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \addbibresource{notes_bibliography.bib}
@@ -40,25 +41,74 @@ In su 2020, s' arrelata de s' Agentzia po s' Amparu de s' Ambienti (ARPA) at amo
     \end{tabular}
 \end{table}
 
-\section{Daily measurements}
+\section{Misuras a sa dii}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 2.5 in su 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2019-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in su 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 2.5 in su 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2020-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in su 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2020-pm10.png}}
+    \caption{Imitiduras de particulau in Casteddu in su 2019 e su 2020.}
+    \label{fig:cagliari-daily}
+\end{figure}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 2.5 in su 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2019-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in su 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 2.5 in su 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2020-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in su 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2020-pm10.png}}
+    \caption{Imitiduras de particulau in Pauli in su 2019 e su 2020.}
+    \label{fig:monserrato-daily}
+\end{figure}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 10 in su 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenqu1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 10 in su 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenqu1-2020-pm10.png}}
+    \caption{Imitiduras de particulau in Cuartu in su 2019 e su 2020.}
+    \label{fig:quartu-daily}
+\end{figure}
 
-\section{Is contus de su 2010}
+\section{Misuras de su 2010}
 
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\columnwidth]{./figures/pm25.png}
-    \caption{imitidura de PM2.5 in sa citadi metropolitana Casteddu.}
+    \caption{Imitiduras de PM 2.5 in sa Citadi Metropolitana de Casteddu.}
     \label{fig:pm25-prov-casteddu}
 \end{figure}
 
 \begin{figure}[tbp]
     \centering
     \includegraphics[width=\columnwidth]{./figures/pm10.png}
-    \caption{imitidura de PM10 in sa citadi metropolitana  de Casteddu.}
+    \caption{Imitiduras de PM 10 in sa Citadi Metropolitana de Casteddu.}
     \label{fig:pm10-prov-casteddu}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{./figures/pm10_map.png}
+    \caption{Imitiduras totalis de PM 10 in sa Citadi Metropolitana de Casteddu.}
+    \label{fig:pm10-prov-casteddu-map}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{./figures/pm25_map.png}
+    \caption{Imitiduras totalis de PM 25 in sa Citadi Metropolitana de Casteddu.}
+    \label{fig:pm25-prov-casteddu-map}
 \end{figure}
 
 \printbibliography

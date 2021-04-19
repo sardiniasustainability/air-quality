@@ -7,6 +7,7 @@
 \usepackage{multirow}
 \usepackage{microtype}
 \usepackage{quoting}
+\usepackage{subfig}
 \usepackage{siunitx}
 \usepackage[backend=biber,style=alphabetic]{biblatex}
 \addbibresource{notes_bibliography.bib}
@@ -33,10 +34,46 @@ In 2020, a report by the Environment Protection Agency (ARPA) showed a number of
     \end{tabular}
 \end{table}
 
+
 \section{Daily measurements}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 2.5 in 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2019-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 2.5 in 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2020-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenca1-2020-pm10.png}}
+    \caption{Particulate emissions in Cagliari in 2019 and 2020.}
+    \label{fig:cagliari-daily}
+\end{figure}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 2.5 in 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2019-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 2.5 in 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2020-pm25.png}} \quad
+    \subfloat[][\emph{PM 10 in 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenmo1-2020-pm10.png}}
+    \caption{Particulate emissions in Monserrato in 2019 and 2020.}
+    \label{fig:monserrato-daily}
+\end{figure}
 
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{PM 10 in 2019}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenqu1-2019-pm10.png}}\\
+    \subfloat[][\emph{PM 10 in 2020}]
+    {\includegraphics[width=.47\columnwidth]{./figures/cenqu1-2020-pm10.png}}
+    \caption{Particulate emissions in Quartu in 2019 and 2020.}
+    \label{fig:quartu-daily}
+\end{figure}
 
 \section{Figures from 2010}
 
@@ -52,6 +89,20 @@ In 2020, a report by the Environment Protection Agency (ARPA) showed a number of
     \includegraphics[width=\columnwidth]{./figures/pm10.png}
     \caption{PM 10 emissions in the Metropolitan City of Cagliari.}
     \label{fig:pm10-prov-casteddu}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{./figures/pm10_map.png}
+    \caption{Total PM 10 emissions in the Metropolitan City of Cagliari.}
+    \label{fig:pm10-prov-casteddu-map}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{./figures/pm25_map.png}
+    \caption{Total PM 2.5 emissions in the Metropolitan City of Cagliari.}
+    \label{fig:pm25-prov-casteddu-map}
 \end{figure}
 
 \printbibliography
