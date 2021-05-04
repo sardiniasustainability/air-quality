@@ -66,6 +66,7 @@ jobs:
       - run:
           name: "Compile PDF (English)"
           command: |
+            cd notes
             pwd && ls
             latexmk -output-directory=/tmp/pdf -pdf notes_eng.tex
       - store_artifacts:
