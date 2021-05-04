@@ -1,4 +1,21 @@
-# Analyse daily emission data
+# daily_data_analysis
+#
+# Analisa is dadus de is imitiduras a sa dii.
+# Analyse daily emission data.
+#
+# Copyright 2021 The Sardinia Computational Sustainability Initiative
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -58,24 +75,24 @@ def _convert_to_timeseries(daily_pollution_data, year):
     return data_series
 
 
-def _plot_thresholds(thresholds):
+def _plot_thresholds(thresholds, ax):
     """ Plot horizontal lines with threshold levels
     """
     if "WhoDaily" in thresholds:
-        plt.axhline(y=thresholds["WhoDaily"], color='red',
-                    linestyle='--', label="WHO daily threshold")
+        ax.axhline(y=thresholds["WhoDaily"], color='red',
+                   linestyle='--', label="WHO daily threshold", linewidth=1)
     if "WhoYearly" in thresholds:
-        plt.axhline(y=thresholds["WhoYearly"], color='magenta',
-                    linestyle='--', label="WHO yearly threshold")
+        ax.axhline(y=thresholds["WhoYearly"], color='magenta',
+                   linestyle='--', label="WHO yearly threshold", linewidth=1)
     if "ItaDaily" in thresholds:
-        plt.axhline(y=thresholds["ItaDaily"], color='red', linestyle=':',
-                    label="Italian daily threshold")
+        ax.axhline(y=thresholds["ItaDaily"], color='red', linestyle=':',
+                   label="Italian daily threshold", linewidth=1)
     if "ItaYearly" in thresholds:
-        plt.axhline(y=thresholds["ItaYearly"], color='magenta', linestyle=':',
-                    label="Italian yearly threshold")
+        ax.axhline(y=thresholds["ItaYearly"], color='magenta', linestyle=':',
+                   label="Italian yearly threshold", linewidth=1)
 
 
-def _plot_daily_pollution(data_file_name, output_file_name, year, thresholds, title=''):
+def _plot_daily_pollution_subplot(data_file_name, year, thresholds, ax, title=''):
     """ Plot the data about daily pollution
     """
     # Read data
@@ -84,17 +101,41 @@ def _plot_daily_pollution(data_file_name, output_file_name, year, thresholds, ti
     daily_pollution_data = _convert_to_timeseries(daily_pollution_data, year)
 
     # Line plot
-    plt.figure()
-    ax = daily_pollution_data.plot(label="Daily measurements")
-    ax.set_ylabel("Concentration of pollutant (μg/m³)")
+    daily_pollution_data.plot(label="Daily measurements", ax=ax, linewidth=1)
+    ax.set_ylabel("Concentration (μg/m³)")
     ax.set_xlabel("Date")
     ax.set_title(title)
-    plt.axhline(y=daily_pollution_data.mean(), color='black',
-                linestyle='-', label="Yearly mean")
-    _plot_thresholds(thresholds)
-    ax.legend()
+    ax.axhline(y=daily_pollution_data.mean(), color='black',
+               linestyle='-', label="Yearly mean", linewidth=1)
+    _plot_thresholds(thresholds, ax)
 
-    plt.tight_layout()
+    # Reduce the number of xticks
+    initial_xticks = ax.get_xticks(minor=False)
+    new_xticks = initial_xticks[0::2]
+    new_xticks = np.append(new_xticks, initial_xticks[-1])
+    ax.set_xticks(new_xticks)
+    ax.set_xticks([], minor=True)
+
+
+def _plot_daily_pollution(data, output_file_name, title=''):
+    """ Plot the data about daily pollution
+    """
+    import math
+
+    num_plots = len(data)
+    num_cols = min(2, num_plots)
+    num_rows = math.ceil(num_plots/num_cols)
+    single_plot_width = 0.48
+    single_plot_ratio = 2
+    _, axs = plt.subplots(num_rows, num_cols,
+                          figsize=shared.figure_size(
+                              single_plot_width*num_cols,
+                              single_plot_ratio/num_rows))
+    axs = axs.reshape(-1).tolist()
+
+    for curr_data, curr_ax in zip(data, axs):
+        _plot_daily_pollution_subplot(
+            curr_data['file'], curr_data['year'], curr_data['thresholds'], curr_ax, curr_data['title'])
 
     # Save figure
     shared.save_figure(output_file_name)
@@ -112,35 +153,72 @@ pm10_thresholds = {
     "ItaDaily": 50-0.1
 }
 
-# PM 2.5
-_plot_daily_pollution("CENMO1-Anno-2019-PM2.5.csv",
-                      "cenmo1-2019-pm25.png", 2019, pm25_thresholds,
-                      title="PM 2.5 emissions in Monserrato")
-_plot_daily_pollution("CENMO1-Anno-2020-PM2.5.csv",
-                      "cenmo1-2020-pm25.png", 2020, pm25_thresholds,
-                      title="PM 2.5 emissions in Monserrato")
-_plot_daily_pollution("CENCA1-Anno-2019-PM2.5.csv",
-                      "cenca1-2019-pm25.png", 2019, pm25_thresholds,
-                      title="PM 2.5 emissions in Cagliari")
-_plot_daily_pollution("CENCA1-Anno-2020-PM2.5.csv",
-                      "cenca1-2020-pm25.png", 2020, pm25_thresholds,
-                      title="PM 2.5 emissions in Cagliari")
-# PM 10
-_plot_daily_pollution("CENMO1-Anno-2019-PM10.csv",
-                      "cenmo1-2019-pm10.png", 2019, pm10_thresholds,
-                      title="PM 10 emissions in Monserrato")
-_plot_daily_pollution("CENMO1-Anno-2020-PM10.csv",
-                      "cenmo1-2020-pm10.png", 2020, pm10_thresholds,
-                      title="PM 10 emissions in Monserrato")
-_plot_daily_pollution("CENCA1-Anno-2019-PM10.csv",
-                      "cenca1-2019-pm10.png", 2019, pm10_thresholds,
-                      title="PM 10 emissions in Cagliari")
-_plot_daily_pollution("CENCA1-Anno-2020-PM10.csv",
-                      "cenca1-2020-pm10.png", 2020, pm10_thresholds,
-                      title="PM 10 emissions in Cagliari")
-_plot_daily_pollution("CENQU1-Anno-2019-PM10.csv",
-                      "cenqu1-2019-pm10.png", 2019, pm10_thresholds,
-                      title="PM 10 emissions in Quartu Sant'Elena")
-_plot_daily_pollution("CENQU1-Anno-2020-PM10.csv",
-                      "cenqu1-2020-pm10.png", 2020, pm10_thresholds,
-                      title="PM 10 emissions in Quartu Sant'Elena")
+shared.set_font_defaults()
+
+# Monserrato
+monserrato_data = [
+    {
+        'file': "CENMO1-Anno-2019-PM2.5.csv",
+        'year': 2019,
+        'thresholds': pm25_thresholds,
+        'title': "PM 2.5 emissions 2019"
+    }, {
+        'file': "CENMO1-Anno-2019-PM10.csv",
+        'year': 2019,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2019"
+    }, {
+        'file': "CENMO1-Anno-2020-PM2.5.csv",
+        'year': 2020,
+        'thresholds': pm25_thresholds,
+        'title': "PM 2.5 emissions in 2020"
+    }, {
+        'file': "CENMO1-Anno-2020-PM10.csv",
+        'year': 2020,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2020"
+    }]
+_plot_daily_pollution(monserrato_data, "cenmo1-daily",
+                      title='Daily emissions in Monserrato')
+
+
+cagliari_data = [
+    {
+        'file': "CENCA1-Anno-2019-PM2.5.csv",
+        'year': 2019,
+        'thresholds': pm25_thresholds,
+        'title': "PM 2.5 emissions 2019"
+    }, {
+        'file': "CENCA1-Anno-2019-PM10.csv",
+        'year': 2019,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2019"
+    }, {
+        'file': "CENCA1-Anno-2020-PM2.5.csv",
+        'year': 2020,
+        'thresholds': pm25_thresholds,
+        'title': "PM 2.5 emissions in 2020"
+    }, {
+        'file': "CENCA1-Anno-2020-PM10.csv",
+        'year': 2020,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2020"
+    }]
+_plot_daily_pollution(cagliari_data, "cenca1-daily",
+                      title='Daily emissions in Cagliari')
+
+# Quartu
+quartu_data = [
+    {
+        'file': "CENQU1-Anno-2019-PM10.csv",
+        'year': 2019,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2019"
+    }, {
+        'file': "CENQU1-Anno-2020-PM10.csv",
+        'year': 2020,
+        'thresholds': pm10_thresholds,
+        'title': "PM 10 emissions in 2020"
+    }]
+_plot_daily_pollution(quartu_data, "cenqu1-daily",
+                      title="Daily emissions in Quartu Sant'Elena")
