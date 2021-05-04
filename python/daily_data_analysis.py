@@ -1,4 +1,21 @@
-# Analyse daily emission data
+# daily_data_analysis
+#
+# Analisa is dadus de is imitiduras a sa dii.
+# Analyse daily emission data.
+#
+# Copyright 2021 The Sardinia Computational Sustainability Initiative
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
 
 import matplotlib.pyplot as plt
 import pandas as pd
@@ -114,33 +131,33 @@ pm10_thresholds = {
 
 # PM 2.5
 _plot_daily_pollution("CENMO1-Anno-2019-PM2.5.csv",
-                      "cenmo1-2019-pm25.png", 2019, pm25_thresholds,
+                      "cenmo1-2019-pm25", 2019, pm25_thresholds,
                       title="PM 2.5 emissions in Monserrato")
 _plot_daily_pollution("CENMO1-Anno-2020-PM2.5.csv",
-                      "cenmo1-2020-pm25.png", 2020, pm25_thresholds,
+                      "cenmo1-2020-pm25", 2020, pm25_thresholds,
                       title="PM 2.5 emissions in Monserrato")
 _plot_daily_pollution("CENCA1-Anno-2019-PM2.5.csv",
-                      "cenca1-2019-pm25.png", 2019, pm25_thresholds,
+                      "cenca1-2019-pm25", 2019, pm25_thresholds,
                       title="PM 2.5 emissions in Cagliari")
 _plot_daily_pollution("CENCA1-Anno-2020-PM2.5.csv",
-                      "cenca1-2020-pm25.png", 2020, pm25_thresholds,
+                      "cenca1-2020-pm25", 2020, pm25_thresholds,
                       title="PM 2.5 emissions in Cagliari")
 # PM 10
 _plot_daily_pollution("CENMO1-Anno-2019-PM10.csv",
-                      "cenmo1-2019-pm10.png", 2019, pm10_thresholds,
+                      "cenmo1-2019-pm10", 2019, pm10_thresholds,
                       title="PM 10 emissions in Monserrato")
 _plot_daily_pollution("CENMO1-Anno-2020-PM10.csv",
-                      "cenmo1-2020-pm10.png", 2020, pm10_thresholds,
+                      "cenmo1-2020-pm10", 2020, pm10_thresholds,
                       title="PM 10 emissions in Monserrato")
 _plot_daily_pollution("CENCA1-Anno-2019-PM10.csv",
-                      "cenca1-2019-pm10.png", 2019, pm10_thresholds,
+                      "cenca1-2019-pm10", 2019, pm10_thresholds,
                       title="PM 10 emissions in Cagliari")
 _plot_daily_pollution("CENCA1-Anno-2020-PM10.csv",
-                      "cenca1-2020-pm10.png", 2020, pm10_thresholds,
+                      "cenca1-2020-pm10", 2020, pm10_thresholds,
                       title="PM 10 emissions in Cagliari")
 _plot_daily_pollution("CENQU1-Anno-2019-PM10.csv",
-                      "cenqu1-2019-pm10.png", 2019, pm10_thresholds,
+                      "cenqu1-2019-pm10", 2019, pm10_thresholds,
                       title="PM 10 emissions in Quartu Sant'Elena")
 _plot_daily_pollution("CENQU1-Anno-2020-PM10.csv",
-                      "cenqu1-2020-pm10.png", 2020, pm10_thresholds,
+                      "cenqu1-2020-pm10", 2020, pm10_thresholds,
                       title="PM 10 emissions in Quartu Sant'Elena")
