@@ -55,21 +55,21 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: "Compile Sardinian PDF"
+          name: "Compile PDF (Sardinian)"
           command: |
-            mkdir /tmp/pdf_sardinian
-            pwd && ls
-            latexmk -output-directory=/tmp/pdf_sardinian -pdf notes_srd.tex
+            mkdir /tmp/pdf
+            cd notes
+            pwd && ls         
+            latexmk -output-directory=/tmp/pdf -pdf notes_srd.tex
       - store_artifacts:
-          path: /tmp/pdf_sardinian/notes_srd.pdf
+          path: /tmp/pdf/notes_srd.pdf
       - run:
-          name: "Compile English PDF"
+          name: "Compile PDF (English)"
           command: |
-            mkdir /tmp/pdf_english
             pwd && ls
-            latexmk -output-directory=/tmp/pdf_english -pdf notes_eng.tex
+            latexmk -output-directory=/tmp/pdf -pdf notes_eng.tex
       - store_artifacts:
-          path: /tmp/pdf_english/notes_eng.pdf
+          path: /tmp/pdf/notes_eng.pdf
 
 workflows:
   version: 2.1

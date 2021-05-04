@@ -1,0 +1,217 @@
+% notes.tex
+%
+% Notas de circa. Documentu basi bi-lìnguas.
+% Research notes. Base document in two languages.
+%
+% This work is licensed under a Creative Commons Attribution 4.0 International License.
+% https://creativecommons.org/licenses/by/4.0/deed.en_US
+
+\documentclass[a4paper]{article}
+
+\usepackage{epigrafica}
+\usepackage{sansmathfonts}
+
+\usepackage[LGR,OT1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{csquotes}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{microtype}
+\usepackage{quoting}
+\usepackage{subfig}
+\usepackage{siunitx}
+
+\sisetup{
+    math-rm=\mathsf,
+    text-rm=\sffamily}
+
+\usepackage[backend=biber,style=alphabetic]{biblatex}
+
+\graphicspath{{../figures/}}
+
+% Managing multiple languages
+\usepackage{etoolbox}
+\newcommand{\sardinian}[1]{%
+  \ifdefstring{\compileForLanguage}{sardinian}%
+    {#1}{}}
+\newcommand{\english}[1]{%
+  \ifdefstring{\compileForLanguage}{english}%
+    {#1}{}}
+\sardinian{%
+    \DefineBibliographyStrings{english}{%
+    references = {Arrelatas bibliogràficas},
+    }
+    \renewcommand{\tablename}{Tauledda}
+    \renewcommand{\figurename}{Figura}
+}
+
+\addbibresource{notes_bibliography.bib}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\title{%
+    \sardinian{Anàlisi de is dadus de is imitiduras de particulau in Sardìnnia}%
+    \english{Analysis of data about particulate emissions in Sardinia}}
+\author{%
+    \sardinian{Andria Picciau}%
+    \english{Andrea Picciau}}
+\maketitle
+
+\sardinian{In su 2020, s' arrelata de s' Agentzia po s' Amparu de s' Ambienti (ARPA) at amostau ca ddoi funt unas cantu chistionis chi pertocant sa calidadi de s' àiri in Sardìnnia~\cite{ARPASardegna2021}. In custu traballu, eus a biri is dadus de su \emph{particulau}, chi funt partixeddas piticas meda chi si podint arrespirai e amuntonai in is prumonis, fendi-ddi dannu mannu~\cite{Davidson2005}. In sa citadi metropolitana de Casteddu, is misuras de custus particulaus funt prus artas de su liminàrgiu sceberau de s' Organitzatzioni Mondiali de sa Saludi (OMS), mancai no propassint su chi at sceberau s' Itàlia. Sa tauledda~\ref{tab:particulate-limits} amostat ca is liminàrgius de s' OMS e de s' Itàlia funt diferentis.}
+
+\english{In 2020, a report by the Environment Protection Agency (ARPA) showed a number of problems related to the quality of air in Sardinia~\cite{ARPASardegna2021}. In this work, we'll see the data about \emph{particulates}, which are very small particles that can be breathed and that can accumulate in the lungs, causing many health problems\cite{Davidson2005}. In the Metropolitan City of Cagliari, the measurements of these particulates are higher than the threshold chosen by the World Health Organisation (WHO), even though they are not above the threshold chosen by Italy. Table~\ref{tab:particulate-limits} show the differences between the thresholds.}
+
+\begin{table}[tbp]
+    \centering
+    \caption{%
+        \sardinian{Liminàrgius de imitidura de particulaus po s' OMS e po sa lei italiana.}%
+        \english{Particulate emission thresholds according to the WHO and the italian law.}\label{tab:particulate-limits}}
+    \begin{tabular}{clcc}
+        \toprule
+        \multicolumn{2}{c}{%
+            \sardinian{Liminàrgius}%
+            \english{Thresholds}}
+         & PM 2,5
+         & PM 10                                                                            \\
+        \midrule
+        \multirow{2}*{\sardinian{OMS}\english{WHO}}
+         & \sardinian{Mèdia a s' annu}\english{Yearly average}
+         & $\SI{10}{\micro\gram/m^3}$
+         & $\SI{20}{\micro\gram/m^3}$                                                       \\
+         & \sardinian{Mèdia a sa dii}\english{Daily average}
+         & $\SI{25}{\micro\gram/m^3}$
+         & $\SI{50}{ug/m^3}$                                                                \\
+        \cmidrule(lr){1-4}
+        \multirow{3}*{\english{Italy}\sardinian{Itàlia}}
+         & \sardinian{Mèdia a s' annu}\english{Yearly average}
+         & $\SI{25}{\micro\gram/m^3}$
+         & $\SI{40}{\micro\gram/m^3}$                                                       \\
+         & \sardinian{Mèdia a sa dii}\english{Daily average}
+         &
+         & $\SI{50}{\micro\gram/m^3}$                                                       \\
+         & \english{Daily average crossings}\sardinian{Propassamentus de sa mèdia a sa dii}
+         &
+         & $35$                                                                             \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+
+\clearpage
+\section{
+  \sardinian{Misuras a sa dii}
+  \english{Daily measurements}}
+
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{%
+            \sardinian{PM 2.5 in su 2019}%
+            \english{PM 2.5 in 2019}}]
+    {\includegraphics[width=.47\columnwidth]{cenca1-2019-pm25.png}} \quad
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2019}%
+            \english{PM 10 in 2019}}]
+    {\includegraphics[width=.47\columnwidth]{cenca1-2019-pm10.png}}\\
+    \subfloat[][\emph{%
+            \sardinian{PM 2.5 in su 2020}%
+            \english{PM 2.5 in 2020}}]
+    {\includegraphics[width=.47\columnwidth]{cenca1-2020-pm25.png}} \quad
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2020}%
+            \english{PM 10 in 2020}}]
+    {\includegraphics[width=.47\columnwidth]{cenca1-2020-pm10.png}}
+    \caption{%
+        \sardinian{Imitiduras de particulau in Casteddu in su 2019 e in su 2020.}%
+        \english{Particulate emissions in Cagliari in 2019 and 2020.}}
+    \label{fig:cagliari-daily}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{%
+            \sardinian{PM 2.5 in su 2019}%
+            \english{PM 2.5 in 2019}}]
+    {\includegraphics[width=.47\columnwidth]{cenmo1-2019-pm25.png}} \quad
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2019}%
+            \english{PM 10 in 2019}}]
+    {\includegraphics[width=.47\columnwidth]{cenmo1-2019-pm10.png}}\\
+    \subfloat[][\emph{%
+            \sardinian{PM 2.5 in su 2020}%
+            \english{PM 2.5 in 2020}}]
+    {\includegraphics[width=.47\columnwidth]{cenmo1-2020-pm25.png}} \quad
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2020}%
+            \english{PM 10 in 2020}}]
+    {\includegraphics[width=.47\columnwidth]{cenmo1-2020-pm10.png}}
+    \caption{%
+        \sardinian{Imitiduras de particulau in Pauli in su 2019 e in su 2020.}%
+        \english{Particulate emissions in Monserrato in 2019 and 2020.}}
+    \label{fig:monserrato-daily}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2019}%
+            \english{PM 10 in 2019}}]
+    {\includegraphics[width=.47\columnwidth]{cenqu1-2019-pm10.png}}\\
+    \subfloat[][\emph{%
+            \sardinian{PM 10 in su 2020}%
+            \english{PM 10 in 2020}}]
+    {\includegraphics[width=.47\columnwidth]{cenqu1-2020-pm10.png}}
+    \caption{%
+        \sardinian{Imitiduras de particulau in Cuartu Sant' Aleni in su 2019 e in su 2020.}%
+        \english{Particulate emissions in Quartu Sant' Elena in 2019 and 2020.}}
+    \label{fig:quartu-daily}
+\end{figure}
+
+
+\clearpage
+\section{%
+  \sardinian{Dadus de su 2010}%
+  \english{Figures from 2010}}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\columnwidth]{pm25.png}
+    \caption{%
+        \sardinian{Imitiduras de PM 2.5 in sa Citadi Metropolitana de Casteddu.}%
+        \english{PM 2.5 emissions in the Metropolitan City of Cagliari.}}
+    \label{fig:pm25-prov-casteddu}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=\columnwidth]{pm10.png}
+    \caption{%
+        \sardinian{Imitiduras de PM 10 in sa Citadi Metropolitana de Casteddu.}%
+        \english{PM 10 emissions in the Metropolitan City of Cagliari.}}
+    \label{fig:pm10-prov-casteddu}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{pm10_map.png}
+    \caption{%
+        \sardinian{Imitiduras totalis de PM 10 in sa Citadi Metropolitana de Casteddu.}%
+        \english{Total PM 10 emissions in the Metropolitan City of Cagliari.}}
+    \label{fig:pm10-prov-casteddu-map}
+\end{figure}
+
+\begin{figure}[tbp]
+    \centering
+    \includegraphics[width=.75\columnwidth]{pm25_map.png}
+    \caption{%
+        \sardinian{Imitiduras totalis de PM 2.5 in sa Citadi Metropolitana de Casteddu.}%
+        \english{Total PM 2.5 emissions in the Metropolitan City of Cagliari.}}
+    \label{fig:pm25-prov-casteddu-map}
+\end{figure}
+
+
+\clearpage
+\printbibliography
+
+\end{document}
