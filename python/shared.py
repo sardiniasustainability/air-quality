@@ -21,9 +21,23 @@ import matplotlib.pyplot as plt
 import os
 
 
+def set_font_defaults():
+    plt.rcParams.update({
+        "font.family": "sans-serif",
+        "font.sans-serif": ['Computer Modern Sans Serif', 'Tahoma', 'DejaVu Sans'],
+        "font.size": 7})
+
+
 def save_figure(output_file_name):
     figures_folder = "../figures/"
     if not os.path.exists(figures_folder):
         os.makedirs(figures_folder)
-    plt.savefig(figures_folder + output_file_name + ".png", dpi=150)
-    plt.savefig(figures_folder + output_file_name + ".pgf")
+    plt.tight_layout()
+    plt.savefig(figures_folder + output_file_name + ".pdf")
+
+
+def figure_size(relative_width, ratio):
+    default_width = 4.773029
+    width = relative_width*default_width
+    height = width/ratio
+    return (width, height)

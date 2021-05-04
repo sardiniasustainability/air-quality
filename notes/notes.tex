@@ -21,12 +21,12 @@
 \usepackage{quoting}
 \usepackage{subfig}
 \usepackage{siunitx}
+\usepackage[backend=biber,style=alphabetic]{biblatex}
 
 \sisetup{
     math-rm=\mathsf,
     text-rm=\sffamily}
-
-\usepackage[backend=biber,style=alphabetic]{biblatex}
+\captionsetup{format=hang,labelfont={bf}}
 
 \graphicspath{{../figures/}}
 
@@ -105,23 +105,7 @@
   \english{Daily measurements}}
 
 \begin{figure}[tbp]
-    \centering
-    \subfloat[][\emph{%
-            \sardinian{PM 2.5 in su 2019}%
-            \english{PM 2.5 in 2019}}]
-    {\includegraphics[width=.47\columnwidth]{cenca1-2019-pm25.png}} \quad
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2019}%
-            \english{PM 10 in 2019}}]
-    {\includegraphics[width=.47\columnwidth]{cenca1-2019-pm10.png}}\\
-    \subfloat[][\emph{%
-            \sardinian{PM 2.5 in su 2020}%
-            \english{PM 2.5 in 2020}}]
-    {\includegraphics[width=.47\columnwidth]{cenca1-2020-pm25.png}} \quad
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2020}%
-            \english{PM 10 in 2020}}]
-    {\includegraphics[width=.47\columnwidth]{cenca1-2020-pm10.png}}
+    \centering\includegraphics{cenca1-daily.pdf}
     \caption{%
         \sardinian{Imitiduras de particulau in Casteddu in su 2019 e in su 2020.}%
         \english{Particulate emissions in Cagliari in 2019 and 2020.}}
@@ -129,23 +113,7 @@
 \end{figure}
 
 \begin{figure}[tbp]
-    \centering
-    \subfloat[][\emph{%
-            \sardinian{PM 2.5 in su 2019}%
-            \english{PM 2.5 in 2019}}]
-    {\includegraphics[width=.47\columnwidth]{cenmo1-2019-pm25.png}} \quad
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2019}%
-            \english{PM 10 in 2019}}]
-    {\includegraphics[width=.47\columnwidth]{cenmo1-2019-pm10.png}}\\
-    \subfloat[][\emph{%
-            \sardinian{PM 2.5 in su 2020}%
-            \english{PM 2.5 in 2020}}]
-    {\includegraphics[width=.47\columnwidth]{cenmo1-2020-pm25.png}} \quad
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2020}%
-            \english{PM 10 in 2020}}]
-    {\includegraphics[width=.47\columnwidth]{cenmo1-2020-pm10.png}}
+    \centering\includegraphics{cenmo1-daily.pdf}
     \caption{%
         \sardinian{Imitiduras de particulau in Pauli in su 2019 e in su 2020.}%
         \english{Particulate emissions in Monserrato in 2019 and 2020.}}
@@ -153,15 +121,7 @@
 \end{figure}
 
 \begin{figure}[tbp]
-    \centering
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2019}%
-            \english{PM 10 in 2019}}]
-    {\includegraphics[width=.47\columnwidth]{cenqu1-2019-pm10.png}}\\
-    \subfloat[][\emph{%
-            \sardinian{PM 10 in su 2020}%
-            \english{PM 10 in 2020}}]
-    {\includegraphics[width=.47\columnwidth]{cenqu1-2020-pm10.png}}
+    \centering\includegraphics{cenqu1-daily.pdf}
     \caption{%
         \sardinian{Imitiduras de particulau in Cuartu Sant' Aleni in su 2019 e in su 2020.}%
         \english{Particulate emissions in Quartu Sant' Elena in 2019 and 2020.}}
@@ -176,7 +136,7 @@
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\columnwidth]{pm25.png}
+    \includegraphics{pm25.pdf}
     \caption{%
         \sardinian{Imitiduras de PM 2.5 in sa Citadi Metropolitana de Casteddu.}%
         \english{PM 2.5 emissions in the Metropolitan City of Cagliari.}}
@@ -185,7 +145,7 @@
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=\columnwidth]{pm10.png}
+    \includegraphics{pm10.pdf}
     \caption{%
         \sardinian{Imitiduras de PM 10 in sa Citadi Metropolitana de Casteddu.}%
         \english{PM 10 emissions in the Metropolitan City of Cagliari.}}
@@ -194,7 +154,7 @@
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=.75\columnwidth]{pm10_map.png}
+    \includegraphics{pm10_map.pdf}
     \caption{%
         \sardinian{Imitiduras totalis de PM 10 in sa Citadi Metropolitana de Casteddu.}%
         \english{Total PM 10 emissions in the Metropolitan City of Cagliari.}}
@@ -203,7 +163,7 @@
 
 \begin{figure}[tbp]
     \centering
-    \includegraphics[width=.75\columnwidth]{pm25_map.png}
+    \includegraphics{pm25_map.pdf}
     \caption{%
         \sardinian{Imitiduras totalis de PM 2.5 in sa Citadi Metropolitana de Casteddu.}%
         \english{Total PM 2.5 emissions in the Metropolitan City of Cagliari.}}
